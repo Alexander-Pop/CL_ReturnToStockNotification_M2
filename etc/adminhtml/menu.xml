@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/* Glory to Ukraine! Glory to the heros! */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Codelegacy_ReturnToStockNotification::manage"
+             title="Return To Stock Notification"
+             module="Codelegacy_ReturnToStockNotification"
+             dependsOnModule="Codelegacy_ReturnToStockNotification"
+             resource="Codelegacy_ReturnToStockNotification::manage"
+             parent="Magento_Catalog::catalog"
+             sortOrder="110"
+             translate="title" />
+        <add id="Codelegacy_ReturnToStockNotification::manage_notificationList"
+             title="Notification List"
+             module="Codelegacy_ReturnToStockNotification"
+             dependsOnModule="Codelegacy_ReturnToStockNotification"
+             resource="Codelegacy_ReturnToStockNotification::manage_notificationList"
+             parent="Codelegacy_ReturnToStockNotification::manage"
+             sortOrder="10"
+             translate="title"
+             action="codelegacy_returntostocknotification/notificationList" />
+    </menu>
+</config>

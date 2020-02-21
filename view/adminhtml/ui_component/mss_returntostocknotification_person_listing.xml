@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+/* Glory to Ukraine! Glory to the heros! */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">codelegacy_returntostocknotification_person_listing.person_listing_data_source
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <buttons />
+        <spinner>person_columns</spinner>
+        <deps>
+            <dep>codelegacy_returntostocknotification_person_listing.person_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="person_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">person_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <aclResource>Codelegacy_ReturnToStockNotification::manage_notificationList</aclResource>
+        <dataProvider class="Codelegacy\ReturnToStockNotification\Ui\Component\Person\DataProvider"
+                      name="person_listing_data_source">
+            <settings>
+                <primaryFieldName>person_id</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks" />
+        <columnsControls name="column_controls" />
+        <exportButton name="export_button"/>
+        <filterSearch name="fulltext" />
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+        <!--
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="codelegacy_returntostocknotification/notificationList/massRemove" />
+                    <type>delete</type>
+                    <label translate="true">Remove</label>
+                </settings>
+            </action>
+        </massaction>
+        -->
+        <paging name="listing_paging" />
+    </listingToolbar>
+    <columns name="person_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="returntostock/notificationList/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">person_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider"
+                       xsi:type="string">codelegacy_returntostocknotification_person_listing.codelegacy_returntostocknotification_person_listing.person_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider"
+                          xsi:type="string">codelegacy_returntostocknotification_person_listing.codelegacy_returntostocknotification_person_listing.person_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>person_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="person_id">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>number</dataType>
+                <label translate="true">ID</label>
+                <sortable>true</sortable>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="first_name">
+            <settings>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">First Name</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+        <column name="last_name">
+            <settings>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">Last Name</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+        <column name="email_address">
+            <settings>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="validate-email" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">Email Address</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+        <column name="product_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Product</label>
+                <sortable>true</sortable>
+                <options class="Codelegacy\ReturnToStockNotification\Model\ResourceModel\ProductNameCollection" />
+            </settings>
+        </column>
+        <column name="product_name">
+            <settings>
+                <dataType>text</dataType>
+                <filter>false</filter>
+                <label translate="true">Product Name</label>
+                <sortable>false</sortable>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Codelegacy\ReturnToStockNotification\Ui\Component\Listing\Column\PersonActions">
+            <settings>
+                <indexField>person_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

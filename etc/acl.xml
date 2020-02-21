@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/* Glory to Ukraine! Glory to the heros! */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Catalog::catalog">
+                    <resource 
+                      id="Codelegacy_ReturnToStockNotification::manage"
+                      translate="title"
+                      title="Return To Stock Notification"
+                      sortOrder="110">
+                        <resource 
+                          id="Codelegacy_ReturnToStockNotification::manage_notificationList"
+                          translate="title"
+                          title="Notification List"
+                          sortOrder="10">
+                            <resource 
+                              id="Codelegacy_ReturnToStockNotification::manage_notificationList_save"
+                              translate="title"
+                              title="Edit Person"
+                              sortOrder="10" />
+                            <resource 
+                              id="Codelegacy_ReturnToStockNotification::manage_notificationList_delete"
+                              translate="title"
+                              title="Remove Person"
+                              sortOrder="20" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

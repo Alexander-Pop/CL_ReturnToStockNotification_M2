@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/* Glory to Ukraine! Glory to the heros! */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <tab id="codelegacy_extensions" sortOrder="999" translate="label">
+      <label>Codelegacy Extensions</label>
+    </tab>
+    <section id="catalog">
+      <tab>codelegacy_extensions</tab>
+      <group 
+        id="codelegacy_returntostocknotification"
+        showInStore="1"
+        showInWebsite="1"
+        showInDefault="1"
+        translate="label"
+        type="text"
+        sortOrder="100">
+          <label>Return To Stock Notification</label>
+          <field 
+            id="enable"
+            translate="label comment"
+            showInDefault="1"
+            showInWebsite="1"
+            showInStore="1"
+            canRestore="1"
+            type="select"
+            sortOrder="10">
+            <label>Enable</label>
+            <comment>When enabled and item is out of stock, will show form to register for restock notification.</comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          </field>
+          <field 
+            id="consent_enable"
+            translate="label comment"
+            showInDefault="1"
+            showInWebsite="1"
+            showInStore="1"
+            canRestore="1"
+            type="select"
+            sortOrder="20">
+            <label>Enable Consent</label>
+            <comment>When enabled, show consent message (and checkbox if configured).</comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <depends>
+              <field id="catalog/codelegacy_returntostocknotification/enable">1</field>
+            </depends>
+          </field>
+          <field 
+            id="consent_checkbox"
+            translate="label comment"
+            showInDefault="1"
+            showInWebsite="1"
+            showInStore="1"
+            canRestore="1"
+            type="select"
+            sortOrder="21">
+            <label>Show Consent Checkbox</label>
+            <comment>Show a checkbox next to the consent message signifying the users consent to be contacted.</comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <depends>
+              <field id="catalog/codelegacy_returntostocknotification/enable">1</field>
+              <field id="catalog/codelegacy_returntostocknotification/consent_enable">1</field>
+            </depends>
+          </field>
+          <field 
+            id="consent_message"
+            translate="label comment"
+            showInDefault="1"
+            showInStore="1"
+            showInWebsite="1"
+            canRestore="1"
+            type="textarea"
+            sortOrder="22">
+            <label>Consent Notice shown before submit button. Leave empty to not show a consent.</label>
+            <comment>This consent notice will be shown with a checkbox. Template variable syntax supported. Some HTML (bold, italic, underline, links, super/subscript) allowed.</comment>
+            <depends>
+              <field id="catalog/codelegacy_returntostocknotification/enable">1</field>
+              <field id="catalog/codelegacy_returntostocknotification/consent_enable">1</field>
+            </depends>
+          </field>
+        </group>
+      </section>
+    </system>
+</config>

@@ -1,0 +1,16 @@
+{
+  "name": "codelegacy/module-return-to-stock-notification",
+  "description": "Provides ability to show a form to sign up for notification of items which are \"out of stock\".",
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "require": {
+    "php": "~7.1.0||~7.2.0",
+    "magento/framework": "^101.0.0||^102.0.0"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": { "Codelegacy\\ReturnToStockNotification\\": "src/" }
+  }
+}

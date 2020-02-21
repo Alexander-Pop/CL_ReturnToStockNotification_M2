@@ -1,0 +1,90 @@
+<?php
+/* Glory to Ukraine! Glory to the heros! */
+/** @var $block Codelegacy\ReturnToStockNotification\Block\Notify */
+?>
+<?php $product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Notify Me'); ?>
+<?php if ($block->showNotificationForm($product)): ?>
+    <?= $product->getMssRtsnMessage(); ?>
+    <form action="<?= $block->getSubmitUrl(); ?>" method="post" id="codelegacy-rtsn-notify-form">
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $product->getId() ?>" />
+        <div class="box_returntostocknotification">
+            <div class="fieldset">
+                <div class="field firstname">
+                    <label class="label" for="firstname">
+                        <span><?= /* @escapeNotVerified */ __('First Name') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="first_name"
+                               id="firstname"
+                               title="<?= /* @escapeNotVerified */ __('First Name') ?>"
+                               class="input-text name firstname"
+                               data-validate="{required: true}"
+                        />
+                    </div>
+                </div>
+                <div class="field lastname">
+                    <label class="label" for="lastname">
+                        <span><?= /* @escapeNotVerified */ __('Last Name') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="last_name"
+                               id="lastname"
+                               title="<?= /* @escapeNotVerified */ __('Last Name') ?>"
+                               class="input-text name lastname"
+                               data-validate="{required: true}"
+                        />
+                    </div>
+                </div>
+                <div class="field email">
+                    <label class="label" for="email">
+                        <span><?= /* @escapeNotVerified */ __('Email Address') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="email_address"
+                               id="email"
+                               title="<?= /* @escapeNotVerified */ __('Email Address') ?>"
+                               class="input-text email"
+                               inputmode="email"
+                               data-validate="{required: true, 'validate-email':true}"
+                        />
+                    </div>
+                </div>
+
+                <?php if ($block->useConsent()): ?>
+                <div class="field consent">
+                    <?php if ($block->showConsentCheckbox()): ?>
+                    <input type="checkbox"
+                           name="consent"
+                           value="1"
+                           id="consent"
+                           class="input-checkbox consent"
+                           data-validate="{required:true}" />
+                    <?php endif; ?>
+                    <label for="consent"><?= $block->getConsentMessage(); ?></label>
+                </div>
+                <?php endif; ?>
+
+                <div class="actions">
+                    <button type="submit"
+                            title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                            class="action primary returntostocknotification"
+                            id="product-returntostocknotification-button">
+                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/x-magento-init">
+    {
+        "#codelegacy-rtsn-notify-form": {
+            "validation": {}
+        }
+    }
+    </script>
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/* Glory to Ukraine! Glory to the heros! */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <codelegacy_returntostocknotification>
+                <enable>0</enable>
+                <consent_enable>0</consent_enable>
+                <consent_checkbox>1</consent_checkbox>
+                <consent_message>By checking this box you agree that {{config path="general/store_information/name"}} may contact you in the future about this product.</consent_message>
+            </codelegacy_returntostocknotification>
+        </catalog>
+    </default>
+</config>
